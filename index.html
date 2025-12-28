@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Mutlu Yıllar ❤️</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background:#ffd6e7;
+    overflow:hidden;
+    font-family:'Comic Sans MS', cursive;
+}
+
+/* BAŞLIK */
+.title{
+    text-align:center;
+    font-size:42px;
+    margin-top:20px;
+    color:#c2185b;
+    animation:pulse 2s infinite;
+}
+.subtitle{
+    text-align:center;
+    font-size:28px;
+    color:#e91e63;
+    animation:slide 3s infinite alternate;
+}
+@keyframes pulse{50%{transform:scale(1.05)}}
+@keyframes slide{from{letter-spacing:2px}to{letter-spacing:5px}}
+
+/* BUTONLAR */
+.music-btn{
+    position:fixed;
+    top:15px;
+    right:15px;
+    padding:12px 22px;
+    border-radius:30px;
+    background:#e91e63;
+    color:white;
+    text-decoration:none;
+    z-index:9999;
+}
+
+.love-btn{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    padding:14px 28px;
+    border-radius:35px;
+    background:#ff4f8b;
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    animation:softPulse 3s infinite;
+    z-index:9999;
+}
+@keyframes softPulse{
+    50%{transform:translateX(-50%) scale(1.05)}
+}
+
+/* AĞAÇLAR */
+.tree{
+    position:fixed;
+    bottom:0;
+    font-size:120px;
+}
+.left{left:10px}
+.right{right:10px}
+
+/* NOEL BABA */
+.santa{
+    position:absolute;
+    top:55%;
+    left:-150px;
+    font-size:90px;
+    cursor:pointer;
+    animation:fly 6s linear infinite;
+    z-index:5;
+}
+@keyframes fly{
+    from{left:-150px}
+    to{left:110%}
+}
+
+/* KAR */
+.snow{
+    position:fixed;
+    top:-10px;
+    font-size:16px;
+    animation:snowfall linear infinite;
+    pointer-events:none;
+}
+@keyframes snowfall{
+    to{transform:translateY(110vh)}
+}
+
+/* HEDİYELER */
+.gift{
+    position:absolute;
+    font-size:40px;
+    cursor:pointer;
+    animation:burst 1.2s ease-out forwards;
+    z-index:6;
+}
+@keyframes burst{
+    to{
+        transform:translate(var(--x), var(--y)) rotate(360deg);
+    }
+}
+
+/* KALPLER */
+.heart{
+    position:absolute;
+    font-size:24px;
+    animation:heartPop 1s ease-out forwards;
+    pointer-events:none;
+}
+@keyframes heartPop{
+    to{
+        transform:translate(var(--x), -120px) scale(0);
+        opacity:0;
+    }
+}
+
+/* MESAJ */
+.message{
+    position:fixed;
+    top:40%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:white;
+    padding:28px 36px;
+    border-radius:30px;
+    font-size:24px;
+    color:#e91e63;
+    animation:pop .8s ease;
+    z-index:99999;
+    text-align:center;
+}
+@keyframes pop{
+    from{transform:translate(-50%,-50%) scale(0)}
+    to{transform:translate(-50%,-50%) scale(1)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="title">🎄✨ Mutlu Yıllar Karıcım ✨🎄</div>
+<div class="subtitle">💖 I LOVE YOU 💖</div>
+
+<a class="music-btn" href="https://youtu.be/cSoI27m1b8g?si=fYBjBSmui4wAiHpL&t=28" target="_blank" rel="noopener noreferrer">
+🎶 MÜZİĞİ BAŞLAT
+</a>
+
+
+<a class="love-btn" href="https://youtu.be/VsFivDV-SKU?si=vGae0ALXyj9VKMRd&t=69" target="_blank" rel="noopener noreferrer">
+💖 NİCE YILLARA 💖
+</a>
+
+
+<div class="tree left">🎄</div>
+<div class="tree right">🎄</div>
+
+<div class="santa" id="santa">🎅🛷</div>
+
+<script>
+/* KAR */
+setInterval(()=>{
+    const s=document.createElement("div");
+    s.className="snow";
+    s.innerText="❄️";
+    s.style.left=Math.random()*window.innerWidth+"px";
+    s.style.animationDuration=1+Math.random()*1.5+"s";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),4000);
+},35);
+
+/* MESAJLAR */
+const messages=[
+"💖 Seni seviyorum güzel karım 💖",
+"🐣 Dalin kokulu civcivim karım 🐣",
+"🍓 Çilek kokulu petitolu bebeğim 🍓",
+"🔥 Hatunum 🔥",
+"💞 Yavrum 💞",
+"💍 Kocasının karısı 💍",
+"🍊 Mandalina yanaklı penguenim 🐧",
+"🐼 Bal dudaklı pandam 🐼",
+"🐝 Bal böceğim 🐝",
+"💘 Balım 💘",
+
+"🌌🍓 Kalbimin yörüngesine yerleşmiş, çilek kokulu küçük yıldızım ✨",
+"🍌💫 Gülüşü muz kadar tatlı, ruhu galaksi kadar geniş minnoşum 🌌",
+"🌞🪐 Saçlarında yaz, kalbinde gezegenler saklayan benim güzelim 💖",
+"🌙🍦 Yanıma gelince evreni durduran, vanilya kokulu minik ayım ✨",
+"🍒🐰 Kalbimde yuva yapmış, kiraz tadında sevimli tavşanım 💞",
+"✨🐱 Ruhuma sarılan, yıldız tozu serpilmiş uykucu kedim 🌙",
+"🪐🥛 Gözlerinde gezegenler dönen, çilekli süt kadar yumuşak canım 💕",
+"🌸🧸 Kalbimin bahçesinde dolaşan, mis kokulu minik ayıcığım 💖",
+"🌌🍰 Evren bana seni saklamış gibi, muzlu kek tadında mutluluğum ✨",
+"🦊💫 Yıldızların bile kıskandığı, narin kalpli küçük tilkim 💞"
+];
+
+/* SADECE MANTIKLI HEDİYELER */
+const gifts = ["🎁","🧸"];
+const piles = {};
+
+const santa=document.getElementById("santa");
+santa.onclick=()=>{
+    const r=santa.getBoundingClientRect();
+    for(let i=0;i<6;i++){
+        const g=document.createElement("div");
+        g.className="gift";
+        g.innerText=gifts[Math.floor(Math.random()*gifts.length)];
+
+        const startX=r.left+r.width/2;
+        const startY=r.top+r.height/2;
+
+        g.style.left=startX+"px";
+        g.style.top=startY+"px";
+
+        const landX=Math.floor(Math.random()*(window.innerWidth-100)+50);
+        if(!piles[landX]) piles[landX]=0;
+        const landY=window.innerHeight-140-piles[landX];
+        piles[landX]+=40;
+
+        g.style.setProperty("--x",(landX-startX)+"px");
+        g.style.setProperty("--y",(landY-startY)+"px");
+
+        g.onclick=(e)=>{
+            e.stopPropagation();
+            const m=document.createElement("div");
+            m.className="message";
+            m.innerText=messages[Math.floor(Math.random()*messages.length)];
+            document.body.appendChild(m);
+            setTimeout(()=>m.remove(),2600);
+        };
+
+        document.body.appendChild(g);
+    }
+};
+
+/* BOŞ ALANA TIKLAYINCA KALP */
+document.addEventListener("click",(e)=>{
+    const hearts=["❤️","💖","💘","💕","💗","💜","💙","💚","🧡"];
+    for(let i=0;i<6;i++){
+        const h=document.createElement("div");
+        h.className="heart";
+        h.innerText=hearts[Math.floor(Math.random()*hearts.length)];
+        h.style.left=e.clientX+"px";
+        h.style.top=e.clientY+"px";
+        h.style.color=`hsl(${Math.random()*360},100%,60%)`;
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),2500);
+    }
+});
+</script>
+
+</body>
+</html>
